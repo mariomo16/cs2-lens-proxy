@@ -1,4 +1,4 @@
-import { applyCors } from "../../../../../../_lib/cors.js";
+import { applyCors } from "../../../../../../../_lib/cors.js";
 
 export default async function handler(req, res) {
 	if (applyCors(req, res)) return;
@@ -10,12 +10,9 @@ export default async function handler(req, res) {
 	const { game_id, region, player_id, country, limit } = req.query;
 
 	if (!game_id || !region || !player_id) {
-		return res
-			.status(400)
-			.json({
-				error:
-					"Missing required path parameters: game_id, region, and player_id",
-			});
+		return res.status(400).json({
+			error: "Missing required path parameters: game_id, region, and player_id",
+		});
 	}
 
 	let url = `https://open.faceit.com/data/v4/rankings/games/${encodeURIComponent(game_id)}/regions/${encodeURIComponent(region)}/players/${encodeURIComponent(player_id)}`;

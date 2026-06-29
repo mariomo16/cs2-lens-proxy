@@ -1,4 +1,4 @@
-import { applyCors } from "../../../../_lib/cors.js";
+import { applyCors } from "../../../../../_lib/cors.js";
 
 export default async function handler(req, res) {
 	if (applyCors(req, res)) return;
