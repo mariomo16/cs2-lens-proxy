@@ -1,7 +1,13 @@
-const ALLOWED_ORIGIN = "chrome-extension://clploogmlpocoolonhlogblopobiccgb";
+const ALLOWED_ORIGINS = [
+	"chrome-extension://clploogmlpocoolonhlogblopobiccgb",
+	"chrome-extension://pminbigcapnnglbbajjfibgpjkkdjfpo",
+];
 
 export function applyCors(req, res) {
-	res.setHeader("Access-Control-Allow-Origin", ALLOWED_ORIGIN);
+	const origin = req.headers.origin;
+	if (origin && ALLOWED_ORIGINS.includes(origin)) {
+		res.setHeader("Access-Control-Allow-Origin", origin);
+	}
 	res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
 	res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
