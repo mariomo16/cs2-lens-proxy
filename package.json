@@ -1,13 +1,9 @@
 {
 	"name": "cs2-lens-proxy",
 	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"packageManager": "pnpm@10.33.4"
+	"description": "Secure API proxy for the cs2-lens Chrome extension",
+	"scripts": {},
+	"author": "Mario Ortega",
+	"license": "MIT",
+	"packageManager": "pnpm@11.9.0"
 }
