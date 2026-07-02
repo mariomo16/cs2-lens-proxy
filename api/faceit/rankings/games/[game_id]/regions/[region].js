@@ -1,12 +1,7 @@
-import { applyCors } from "../../../../../_lib/cors.js";
+import { faceitFetch } from "../../../../../_lib/faceit-client.js";
+import { createHandler } from "../../../../../_lib/handler.js";
 
-export default async function handler(req, res) {
-	if (applyCors(req, res)) return;
-
-	if (req.method !== "GET") {
-		return res.status(405).json({ error: "Method not allowed" });
-	}
-
+export default createHandler(async (req, res) => {
 	const { game_id, region, country, offset, limit } = req.query;
 
 	if (!game_id || !region) {
@@ -15,33 +10,14 @@ export default async function handler(req, res) {
 			.json({ error: "Missing required path parameters: game_id and region" });
 	}
 
-	let url = `https://open.faceit.com/data/v4/rankings/games/${encodeURIComponent(game_id)}/regions/${encodeURIComponent(region)}`;
-
 	const params = new URLSearchParams();
 	if (country) params.append("country", country);
 	if (offset !== undefined) params.append("offset", offset);
 	params.append("limit", limit ?? "2");
-	const qs = params.toString();
-	if (qs) url += `?${qs}`;
 
-	try {
-		const response = await fetch(url, {
-			headers: {
-				Authorization: `Bearer ${process.env.FACEIT_API_KEY}`,
-			},
-		});
-
-		if (!response.ok) {
-			const errorBody = await response.text();
-			console.error("Faceit error", response.status, errorBody);
-			return res.status(response.status).json({
-				error: "Faceit API request failed",
-			});
-		}
-
-		const data = await response.json();
-		return res.status(200).json(data);
-	} catch (_err) {
-		return res.status(500).json({ error: "Internal server error" });
-	}
-}
+	const data = await faceitFetch(
+		`/rankings/games/${encodeURIComponent(game_id)}/regions/${encodeURIComponent(region)}?${params}`,
+		res,
+	);
+	if (data) res.status(200).json(data);
+});

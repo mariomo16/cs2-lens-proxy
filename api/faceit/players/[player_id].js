@@ -1,12 +1,7 @@
-import { applyCors } from "../../_lib/cors.js";
+import { faceitFetch } from "../../_lib/faceit-client.js";
+import { createHandler } from "../../_lib/handler.js";
 
-export default async function handler(req, res) {
-	if (applyCors(req, res)) return;
-
-	if (req.method !== "GET") {
-		return res.status(405).json({ error: "Method not allowed" });
-	}
-
+export default createHandler(async (req, res) => {
 	const { player_id } = req.query;
 	if (!player_id) {
 		return res
@@ -14,27 +9,9 @@ export default async function handler(req, res) {
 			.json({ error: "Missing required path parameter: player_id" });
 	}
 
-	try {
-		const response = await fetch(
-			`https://open.faceit.com/data/v4/players/${encodeURIComponent(player_id)}`,
-			{
-				headers: {
-					Authorization: `Bearer ${process.env.FACEIT_API_KEY}`,
-				},
-			},
-		);
-
-		if (!response.ok) {
-			const errorBody = await response.text();
-			console.error("Faceit error", response.status, errorBody);
-			return res.status(response.status).json({
-				error: "Faceit API request failed",
-			});
-		}
-
-		const data = await response.json();
-		return res.status(200).json(data);
-	} catch (_err) {
-		return res.status(500).json({ error: "Internal server error" });
-	}
-}
+	const data = await faceitFetch(
+		`/players/${encodeURIComponent(player_id)}`,
+		res,
+	);
+	if (data) res.status(200).json(data);
+});

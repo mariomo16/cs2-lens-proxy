@@ -7,7 +7,7 @@ Proxy API for FACEIT endpoints, deployed on Vercel.
 ### Retrieve player details
 
 ```
-GET https://open.faceit.com/data/v4/players
+GET /api/faceit/players
 ```
 
 **Query Parameters**  
@@ -30,7 +30,7 @@ _Appended to the end of the URL (e.g., ?game=cs2)._
 ### Retrieve player details
 
 ```
-GET https://open.faceit.com/data/v4/players/{player_id}
+GET /api/faceit/players/{player_id}
 ```
 
 **Path Parameters**  
@@ -45,7 +45,7 @@ _Embedded directly within the URL path._
 ### Retrieve global ranking of a game
 
 ```
-GET https://open.faceit.com/data/v4/rankings/games/{game_id}/regions/{region}
+GET /api/faceit/rankings/games/{game_id}/regions/{region}
 ```
 
 **Path Parameters**  
@@ -70,17 +70,17 @@ _Appended to the end of the URL (e.g., ?country=es)._
 ### Retrieve user position in the global ranking of a game
 
 ```
-GET https://open.faceit.com/data/v4/rankings/games/{game_id}/regions/{region}/players/{player_id}
+GET /api/faceit/rankings/games/{game_id}/regions/{region}/players/{player_id}
 ```
 
 **Path Parameters**  
 _Embedded directly within the URL path._
 
-| Parameter   | Type   | Required | Description        |
-| ----------- | ------ | -------- | ------------------ |
-| `game_id`   | string | Yes      | The id of the game |
-| `region`    | string | Yes      | A region of a game |
-| `player_id` | string | Yes      | A region of a game |
+| Parameter   | Type   | Required | Description          |
+| ----------- | ------ | -------- | -------------------- |
+| `game_id`   | string | Yes      | The id of the game   |
+| `region`    | string | Yes      | A region of a game   |
+| `player_id` | string | Yes      | The id of the player |
 
 **Query Parameters**  
 _Appended to the end of the URL (e.g., ?country=es)._

@@ -2,8 +2,19 @@
 	"name": "cs2-lens-proxy",
 	"version": "1.0.0",
 	"description": "Secure API proxy for the cs2-lens Chrome extension",
-	"scripts": {},
+	"scripts": {
+		"dev": "vercel dev",
+		"lint": "eslint api/",
+		"format": "prettier --write .",
+		"format:check": "prettier --check ."
+	},
 	"author": "Mario Ortega",
 	"license": "MIT",
-	"packageManager": "pnpm@11.9.0"
+	"packageManager": "pnpm@11.9.0",
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"eslint": "^10.6.0",
+		"globals": "^17.7.0",
+		"prettier": "^3.9.4"
+	}
 }

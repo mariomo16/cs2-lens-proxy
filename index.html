@@ -1,75 +1,70 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CS2 Lens Proxy</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>CS2 Lens Proxy</h1>
-      <div class="subtitle">
-        Secure API proxy for the cs2-lens Chrome extension
-      </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Secure API proxy for the cs2-lens Chrome extension" />
+		<title>CS2 Lens Proxy</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h1>CS2 Lens Proxy</h1>
+			<div class="subtitle">Secure API proxy for the cs2-lens Chrome extension</div>
 
-      <div class="route">
-        <span class="method">GET</span>
-        <span class="path"
-          >/api/faceit/player?<span class="query">nickname</span>=X</span
-        >
-        <div class="desc">Lookup player by nickname</div>
-      </div>
+			<div class="route">
+				<span class="method">GET</span>
+				<span class="path">/api/faceit/players?<span class="query">nickname</span>=X</span>
+				<div class="desc">Lookup player by nickname</div>
+			</div>
 
-      <div class="route">
-        <span class="method">GET</span>
-        <span class="path"
-          >/api/faceit/player?<span class="query">game</span>=X&amp;<span
-            class="query"
-            >game_player_id</span
-          >=X</span
-        >
-        <div class="desc">Lookup player by game + SteamID64</div>
-      </div>
+			<div class="route">
+				<span class="method">GET</span>
+				<span class="path"
+					>/api/faceit/players?<span class="query">game</span>=X&amp;<span class="query"
+						>game_player_id</span
+					>=X</span
+				>
+				<div class="desc">Lookup player by game + SteamID64</div>
+			</div>
 
-      <div class="route">
-        <span class="method">GET</span>
-        <span class="path"
-          >/api/faceit/players/<span class="param">{player_id}</span></span
-        >
-        <div class="desc">Get player details by FACEIT ID</div>
-      </div>
+			<div class="route">
+				<span class="method">GET</span>
+				<span class="path">/api/faceit/players/<span class="param">{player_id}</span></span>
+				<div class="desc">Get player details by FACEIT ID</div>
+			</div>
 
-      <div class="route">
-        <span class="method">GET</span>
-        <span class="path"
-          >/api/faceit/rankings/games/<span class="param">{game_id}</span
-          >/regions/<span class="param">{region}</span></span
-        >
-        <div class="desc">
-          Global ranking · <span class="query">?country=</span>
-          <span class="query">?offset=</span> <span class="query">?limit=</span>
-        </div>
-      </div>
+			<div class="route">
+				<span class="method">GET</span>
+				<span class="path"
+					>/api/faceit/rankings/games/<span class="param">{game_id}</span>/regions/<span
+						class="param"
+						>{region}</span
+					></span
+				>
+				<div class="desc">
+					Global ranking · <span class="query">?country=</span> <span class="query">?offset=</span>
+					<span class="query">?limit=</span>
+				</div>
+			</div>
 
-      <div class="route">
-        <span class="method">GET</span>
-        <span class="path"
-          >/api/faceit/rankings/games/<span class="param">{game_id}</span
-          >/regions/<span class="param">{region}</span>/players/<span
-            class="param"
-            >{player_id}</span
-          ></span
-        >
-        <div class="desc">
-          Player position in ranking · <span class="query">?country=</span>
-          <span class="query">?limit=</span>
-        </div>
-      </div>
+			<div class="route">
+				<span class="method">GET</span>
+				<span class="path"
+					>/api/faceit/rankings/games/<span class="param">{game_id}</span>/regions/<span
+						class="param"
+						>{region}</span
+					>/players/<span class="param">{player_id}</span></span
+				>
+				<div class="desc">
+					Player position in ranking · <span class="query">?country=</span>
+					<span class="query">?limit=</span>
+				</div>
+			</div>
 
-      <footer>
-        <a href="https://github.com/mariomo16">github.com/mariomo16</a>
-      </footer>
-    </div>
-  </body>
+			<footer>
+				<a href="https://github.com/mariomo16">github.com/mariomo16</a>
+			</footer>
+		</div>
+	</body>
 </html>
